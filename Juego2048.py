@@ -1,35 +1,10 @@
 import random
 
 # Matriz
-
-
-# Matriz del 1 al 16
-matriz = [[1, 2, 3, 4],
-          [5, 6, 7, 8],
-          [9, 10, 11, 12],
-          [13, 14, 15, 16]]
-
-matriz = [[2, 2, 2, 2],
-          [0, 0, 4, 4],
-          [4, 0,  0, 4],
-          [16, 0, 4, 16]]
-
-matriz = [[2, 4, 8, 16],
-          [32, 64, 128, 256],
-          [512, 1024, 2048, 4096],
-          [8192, 16384, 32768, 65536]]
-
-
-
 matriz = [[0, 0, 0, 0],
           [0, 0, 0, 0],
           [0, 0, 0, 0],
-          [0, 0, 0, 1024]]
-
-matriz = [[2, 4, 8, 16],
-          [32, 64, 128, 256],
-          [512, 1024, 2048, 4096],
-          [8192, 16384, 1, 1]]
+          [0, 0, 0, 0]]
 
 # Mostrar la matriz de manera cuadrada con números alineados
 def Mostrar_Matriz():
@@ -44,8 +19,7 @@ def Verificar_Matriz_Llena():
     return not any(0 in fila for fila in matriz) #devuelve True si NO consigue un 0
 
 def Verificar_Victoria(num):
-    return any(num in fila for fila in matriz) #devuelve True si no consigue un 0
-
+    return any(num in fila for fila in matriz) #devuelve True si consigue el valor de la victoria
 
 def Verificar_Si_Hay_Movimientos_Posibles():
     for i in range(4):
@@ -57,7 +31,6 @@ def Verificar_Si_Hay_Movimientos_Posibles():
             if matriz[i][j] == matriz[i+1][j]:
                 return True
     return False
-
 
 def Agregar_Valor_Aleatorio():
     global eleccionJuego
@@ -171,9 +144,9 @@ def Main():
                     print("Felicidades",nombre_jugador,"!!! Deseas seguir jugando (sandbox)? si [s], no[n]:")
                     if solicitar_letra(['s', 'n'])=='n':
                         break
-                Agregar_Valor_Aleatorio()
+                if not Verificar_Matriz_Llena():
+                    Agregar_Valor_Aleatorio()
                 
-
     elif opcion == '2':
         print("Código para Continuar partida guardada.")
     elif opcion == '3':
@@ -182,8 +155,5 @@ def Main():
         print("Código para Mostrar puntajes.")
     elif opcion == '5':
         print("Código para Salir")
-
-
-print(Verificar_Matriz_Llena())
 
 Main()
